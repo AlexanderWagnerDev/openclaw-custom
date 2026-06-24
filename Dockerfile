@@ -24,7 +24,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     iputils-ping \
     netcat-openbsd \
     locales \
-    && npm install -g clawhub @openclaw/discord @openclaw/codex @openclaw/whatsapp @openclaw/nextcloud-talk @openclaw/twitch @steipete/summarize \
+    && npm install -g npm clawhub @openclaw/discord @openclaw/codex @openclaw/whatsapp @openclaw/nextcloud-talk @openclaw/twitch @steipete/summarize \
     && locale-gen en_US.UTF-8 \
     && locale-gen de_DE.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
