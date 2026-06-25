@@ -41,4 +41,6 @@ RUN npm install -g npm clawhub \
     @openclaw/nextcloud-talk \
     @openclaw/twitch \
     @anthropic-ai/claude-code \
+    @openai/codex \
+    opencode-ai \
     @steipete/summarize
