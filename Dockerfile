@@ -40,4 +40,5 @@ RUN npm install -g npm clawhub \
     @openclaw/whatsapp \
     @openclaw/nextcloud-talk \
     @openclaw/twitch \
+    @anthropic-ai/claude-code \
     @steipete/summarize
