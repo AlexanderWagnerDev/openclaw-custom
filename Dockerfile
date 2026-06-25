@@ -33,4 +33,11 @@ ENV LC_ALL=en_US.UTF-8
 
 USER node
 
-RUN npm install -g npm clawhub @openclaw/whatsapp @openclaw/nextcloud-talk @openclaw/twitch @steipete/summarize
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+
+RUN npm install -g npm clawhub \
+    @openclaw/whatsapp \
+    @openclaw/nextcloud-talk \
+    @openclaw/twitch \
+    @steipete/summarize
