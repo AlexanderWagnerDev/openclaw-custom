@@ -24,7 +24,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     iputils-ping \
     netcat-openbsd \
     locales \
-    && npm install -g npm clawhub @openclaw/whatsapp @openclaw/nextcloud-talk @openclaw/twitch @steipete/summarize \
     && locale-gen en_US.UTF-8 \
     && locale-gen de_DE.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
@@ -33,3 +32,5 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
 USER node
+
+RUN npm install -g npm clawhub @openclaw/whatsapp @openclaw/nextcloud-talk @openclaw/twitch @steipete/summarize
