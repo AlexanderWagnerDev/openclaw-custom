@@ -2,6 +2,9 @@ FROM ghcr.io/openclaw/openclaw:latest
 
 USER root
 
+# Switch apt sources to HTTPS
+RUN sed -i 's|http://|https://|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null || true
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     git \
     gh \
@@ -41,10 +44,18 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     bat \
     fd-find \
     lsof \
+    srt-tools \
+    libsrt-dev \
+    v4l-utils \
+    dmidecode \
+    ca-certificates \
+    iproute2 \
+    openssl \
+    whois \
     locales \
     && locale-gen en_US.UTF-8 \
     && locale-gen de_DE.UTF-8 \
-    && pip install --break-system-packages yt-dlp \
+    && pip install --break-system-packages yt-dlp psutil \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LANG=en_US.UTF-8
