@@ -65,7 +65,7 @@ USER node
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
-RUN pip install yt-dlp psutil
+RUN pip install --break-system-packages yt-dlp psutil
 
 RUN npm install -g npm clawhub \
     @openclaw/whatsapp \
