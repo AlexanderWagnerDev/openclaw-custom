@@ -47,10 +47,7 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=beta,enable=${{ github.ref_name == 'beta' }}
-            type=sha,prefix=sha-,format=short
-            type=schedule,pattern=daily-{{date 'YYYYMMDD'}}
+            type=raw,value=beta
 
       - name: Build and push
         uses: docker/build-push-action@v7
