@@ -3,6 +3,7 @@ FROM ghcr.io/openclaw/openclaw:latest
 USER root
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    git \
     gh \
     nano \
     jq \
@@ -10,6 +11,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fzf \
     tree \
     wget \
+    curl \
     unzip \
     zip \
     openssh-client \
@@ -24,9 +26,25 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     dnsutils \
     iputils-ping \
     netcat-openbsd \
+    make \
+    htop \
+    btop \
+    ffmpeg \
+    sqlite3 \
+    moreutils \
+    nmap \
+    iperf3 \
+    rsync \
+    mediainfo \
+    tcpdump \
+    socat \
+    bat \
+    fd-find \
+    lsof \
     locales \
     && locale-gen en_US.UTF-8 \
     && locale-gen de_DE.UTF-8 \
+    && pip install --break-system-packages yt-dlp \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LANG=en_US.UTF-8
