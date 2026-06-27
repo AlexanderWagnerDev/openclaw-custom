@@ -48,6 +48,7 @@ jobs:
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=beta,enable=${{ github.ref_name == 'beta' }}
             type=sha,prefix=sha-,format=short
             type=schedule,pattern=daily-{{date 'YYYYMMDD'}}
 
