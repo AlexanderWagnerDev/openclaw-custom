@@ -1,11 +1,12 @@
-FROM ghcr.io/openclaw/openclaw:latest
+FROM ghcr.io/alexanderwagnerdev/ubuntu-docker:latest
 
 USER root
 
-# Switch apt sources to HTTPS
-RUN sed -i 's|http://|https://|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null || true
-
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+# Install Node.js 24
+RUN apt-get update && apt-get install -y curl ca-certificates \
+    && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get install -y \
     git \
     gh \
     nano \
@@ -14,7 +15,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fzf \
     tree \
     wget \
-    curl \
     unzip \
     zip \
     openssh-client \
@@ -48,7 +48,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     libsrt-openssl-dev \
     v4l-utils \
     dmidecode \
-    ca-certificates \
     iproute2 \
     openssl \
     whois \
@@ -60,14 +59,21 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
+# Create node user
+RUN useradd -m -s /bin/bash node
+
 USER node
+WORKDIR /home/node
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
+ENV PATH=$PATH:/home/node/.local/bin
 
-RUN pip install --break-system-packages yt-dlp psutil
+RUN pip install --user --break-system-packages yt-dlp psutil
 
-RUN npm install -g npm clawhub \
+RUN npm install -g npm \
+    openclaw@latest \
+    clawhub \
     @openclaw/whatsapp \
     @openclaw/nextcloud-talk \
     @openclaw/twitch \
