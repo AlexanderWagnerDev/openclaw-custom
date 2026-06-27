@@ -55,7 +55,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     locales \
     && locale-gen en_US.UTF-8 \
     && locale-gen de_DE.UTF-8 \
-    && pip install --break-system-packages yt-dlp psutil \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LANG=en_US.UTF-8
@@ -65,6 +64,9 @@ USER node
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
+ENV PATH=$PATH:/home/node/.local/bin
+
+RUN pip install --user --break-system-packages yt-dlp psutil
 
 RUN npm install -g npm clawhub \
     @openclaw/whatsapp \
