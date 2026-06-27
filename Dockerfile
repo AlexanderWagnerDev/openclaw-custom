@@ -1,8 +1,7 @@
-FROM ghcr.io/alexanderwagnerdev/ubuntu-docker:latest
+FROM alexanderwagnerdev/ubuntu:latest
 
 USER root
 
-# Install Node.js 24
 RUN apt-get update && apt-get install -y curl ca-certificates \
     && curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y nodejs \
@@ -59,7 +58,6 @@ RUN apt-get update && apt-get install -y curl ca-certificates \
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-# Create node user
 RUN useradd -m -s /bin/bash node
 
 USER node
