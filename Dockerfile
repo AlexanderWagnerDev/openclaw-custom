@@ -45,7 +45,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     fd-find \
     lsof \
     srt-tools \
-    libsrt-dev \
+    libsrt-openssl-dev \
     v4l-utils \
     dmidecode \
     ca-certificates \
